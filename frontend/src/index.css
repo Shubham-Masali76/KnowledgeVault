@@ -146,6 +146,68 @@ body {
   color: var(--text-main);
 }
 
+.history-item-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  overflow: hidden;
+}
+
+.chat-icon {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+}
+
+.chat-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rename-input {
+  background: rgba(0,0,0,0.5);
+  color: var(--text-main);
+  border: 1px solid var(--neon-crimson);
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.chat-actions {
+  display: none;
+  gap: 0.3rem;
+  margin-left: 0.5rem;
+}
+
+.history-item:hover .chat-actions {
+  display: flex;
+}
+
+.chat-actions button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  font-size: 1rem;
+  transition: all 0.2s;
+  padding: 0.1rem;
+}
+
+.chat-actions button:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.history-item.pinned {
+  border: 1px solid var(--neon-crimson-dim);
+  background: rgba(255, 0, 60, 0.05);
+}
+
+
 .history-item.active {
   background: var(--neon-crimson-dim);
   border-color: rgba(255, 0, 60, 0.3);
@@ -282,3 +344,85 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* Custom Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease forwards;
+}
+
+.modal-content {
+  width: 90%;
+  max-width: 400px;
+  padding: 2rem;
+  text-align: center;
+  gap: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px var(--neon-crimson-dim);
+  animation: slideUp 0.3s ease forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-title {
+  color: var(--text-main);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-message {
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.modal-buttons button {
+  min-width: 100px;
+}
+
+/* Empty State UI */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-muted);
+  text-align: center;
+  gap: 1rem;
+  animation: fadeIn 0.5s ease;
+  margin-top: 15vh;
+}
+
+.empty-state-icon {
+  font-size: 4rem;
+  color: var(--neon-crimson);
+  filter: drop-shadow(0 0 20px var(--neon-crimson-dim));
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.empty-state h2 {
+  color: var(--text-main);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
